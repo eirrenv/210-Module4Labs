@@ -7,6 +7,7 @@
 #include <string>
 #include <algorithm> // for sort(), find()
 #include <numeric> // for accumulate()
+#include <iomanip> // for nice looking numbers :)
 #include <fstream>
 using namespace std;
 
@@ -32,7 +33,7 @@ int main() {
     }
     // testing array
     for (int i = 0; i < SIZE; ++i) {
-        cout << "Balance at " << i << ": " << balance.at(i) << endl;
+        cout << fixed << setprecision(2) << "Balance at Day " << i + 1 << ": $" << balance.at(i) << endl;
     }
 
     return 0;

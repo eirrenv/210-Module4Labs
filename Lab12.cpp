@@ -49,7 +49,7 @@ int main() {
         cout << endl; 
 
     cout << endl;
-    
+
     // using iterator to find value in array
     double target = 653.64;
     array<double, SIZE> :: iterator it;
@@ -60,6 +60,25 @@ int main() {
     else {
         cout << target << " was not found in balance." << endl;
     }
+
+    cout << endl; 
+
+    // find max and min
+    cout << "Maximum balance over the month: $" << *max_element(balance.begin(), balance.end()) << endl;
+    cout << "Minimum balance over the month: $" << *min_element(balance.begin(), balance.end()) << endl;
+
+    
+    // sorted balance, without duplicate values
+    array<double, SIZE> sortedBalance;
+    sortedBalance.at(0) = balance.at(0);
+    int j = 1;
+    for (int i = 0; i < SIZE; ++i) {
+        if (sortedBalance.at(j - 1) != balance.at(i)) {
+            sortedBalance.at(j - 1) = balance.at(i);
+            ++j;
+        }
+    }
+    for (double val : sortedBalance) cout << val << " "; cout << endl;
 
     return 0;
 }

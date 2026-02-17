@@ -31,9 +31,34 @@ int main() {
     else {
         cout << "File not found.\n";
     }
-    // testing array
-    for (int i = 0; i < SIZE; ++i) {
-        cout << fixed << setprecision(2) << "Balance at Day " << i + 1 << ": $" << balance.at(i) << endl;
+
+    // sorting array from highest to lowest
+    sort(balance.rbegin(), balance.rend());
+    cout << "Sorted Balance: ";
+    for (double val : balance) 
+        cout << "$" << val << " "; 
+    cout << endl; 
+
+    cout << endl;
+
+    // sorted lowest to highest
+    sort(balance.begin(), balance.end());
+        cout << "Sorted Balance: ";
+        for (double val : balance) 
+            cout << "$" << val << " "; 
+        cout << endl; 
+
+    cout << endl;
+    
+    // using iterator to find value in array
+    double target = 653.64;
+    array<double, SIZE> :: iterator it;
+    it = find(balance.begin(), balance.end(), target);
+    if (it != balance.end()) {
+        cout << target << " Found in position " << it - balance.begin() << endl;
+    }
+    else {
+        cout << target << " was not found in balance." << endl;
     }
 
     return 0;

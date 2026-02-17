@@ -26,20 +26,27 @@ struct Team {
 
 // protoypes for player input and display
 void inputPlayer(Team *);
-// void displayPlayer(Team *);
+void displayPlayer(Team *);
 
 int main() {
     // new team roster array for starting 5 on team
     Team *roster = new Team[PLAYERS];
+
+    // name for team
+    string teamName;
+    cout << "Please provide the team name: ";
+    getline(cin, teamName);
+    cout << endl;
 
     // player input and printing starting 5
     for (int i = 0; i < PLAYERS; ++i) {
         inputPlayer(&roster[i]);
     }
 
-    // for (int i = 0; i < PLAYERS; ++i) {
-    //    displayPlayer(&roster[i]);
-    // }
+    cout << "Players on Team: " << teamName << endl;
+    for (int i = 0; i < PLAYERS; ++i) {
+        displayPlayer(&roster[i]);
+    }
 
     return 0;
 }
@@ -54,6 +61,7 @@ void inputPlayer(Team * player) {
     cout << "Player number: ";
     cin >> player->playerNum;
     cin.ignore();
+    // player position is position on court, can be PG, SG, SF, PF, or C
     cout << "Player position: ";
     getline(cin, player->playerPos);
 
@@ -69,4 +77,16 @@ void inputPlayer(Team * player) {
     cin.ignore();
     cout << endl << endl;
     numPlayer++;
+}
+
+// display player name, number, court position, score per game, PPG average over the 5 games
+void displayPlayer(Team * player) {
+    cout << "Name: " << player->playerName << endl;
+    cout << "Number: " << player->playerNum << endl;
+    cout << "Position: " << player->playerPos << endl;
+    for (int i = 0; i < GAMES; ++i) {
+        cout << "Game #" << i + 1 << ": " << player->ptsOverGames[i] << endl;
+    }
+    cout << "PPG Average: " << player->ptsAvg << " Points Per Game";
+    cout << endl << endl;
 }

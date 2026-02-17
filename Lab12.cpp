@@ -67,18 +67,35 @@ int main() {
     cout << "Maximum balance over the month: $" << *max_element(balance.begin(), balance.end()) << endl;
     cout << "Minimum balance over the month: $" << *min_element(balance.begin(), balance.end()) << endl;
 
+    cout << endl;
     
     // sorted balance, without duplicate values
     array<double, SIZE> sortedBalance;
+    sortedBalance.fill(0.0);
     sortedBalance.at(0) = balance.at(0);
-    int j = 1;
+    int j = 0;
     for (int i = 0; i < SIZE; ++i) {
-        if (sortedBalance.at(j - 1) != balance.at(i)) {
-            sortedBalance.at(j - 1) = balance.at(i);
-            ++j;
+        while(balance.at(i) == sortedBalance.at(j)) {
+            ++i;
         }
+        ++j;
+        sortedBalance.at(j) = balance.at(i);
     }
-    for (double val : sortedBalance) cout << val << " "; cout << endl;
+    
+    // sortedBalance array sorted from lowest to highest
+    cout << "Sorted balance array from lowest to highest value:" << endl;
+    for (int i = 0; sortedBalance.at(i) != 0.0; ++i) {
+        cout << "$" << sortedBalance.at(i) << " ";
+    }
+    cout << endl;
+
+    cout << endl;
+
+    double averageBalance;
+    // average balance over a month
+    cout << "Average account balance over a month:" << endl;
+    averageBalance = accumulate(sortedBalance.begin(), sortedBalance.end(), 0.0) / 7.0;
+    cout << "$" << fixed << setprecision(2) << averageBalance << endl; 
 
     return 0;
 }

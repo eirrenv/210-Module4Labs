@@ -23,7 +23,7 @@ int main() {
     fin.open("finances.txt");
     if(fin.good()) {
         // placing values from file into vector
-        for (int i = 0; i < SIZE; ++i) {
+        for (int i = 0; i < balance.size(); ++i) {
             fin >> balance.at(i);
         }
         fin.close();
@@ -71,6 +71,7 @@ int main() {
     
     // sorted balance, without duplicate values
     vector<double> sortedBalance(SIZE);
+    fill(sortedBalance.begin(), sortedBalance.end(), 0.0);
     sortedBalance.at(0) = balance.at(0);
     int j = 0;
     for (int i = 0; i < SIZE; ++i) {
